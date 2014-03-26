@@ -1,11 +1,11 @@
 Summary:	Library providing serialization and deserialization support for the JSON format
 Name:		json-glib
-Version:	0.16.2
+Version:	1.0.0
 Release:	1
 License:	LGPL v2
 Group:		Development/Libraries
-Source0:	http://ftp.gnome.org/pub/GNOME/sources/json-glib/0.16/%{name}-%{version}.tar.xz
-# Source0-md5:	0c6121741956fc34933a7ebae5868ec2
+Source0:	http://ftp.gnome.org/pub/GNOME/sources/json-glib/1.0/%{name}-%{version}.tar.xz
+# Source0-md5:	d13485f5aa3b93227bbeb689ccfb596c
 URL:		http://live.gnome.org/JsonGlib
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -60,6 +60,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
+
 %find_lang json-glib-1.0
 
 %clean
@@ -71,6 +73,11 @@ rm -rf $RPM_BUILD_ROOT
 %files -f json-glib-1.0.lang
 %defattr(644,root,root,755)
 %doc ChangeLog NEWS
+%attr(755,root,root) %{_bindir}/json-glib-format
+%attr(755,root,root) %{_bindir}/json-glib-validate
+%{_mandir}/man1/json-glib-format.1*
+%{_mandir}/man1/json-glib-validate.1*
+
 %attr(755,root,root) %ghost %{_libdir}/libjson-glib-1.0.so.?
 %attr(755,root,root) %{_libdir}/libjson-glib-1.0.so.*.*.*
 %{_libdir}/girepository-1.0/*.typelib
